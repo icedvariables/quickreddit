@@ -1,7 +1,15 @@
 import optparse
 
 def main():
-    print parseArguments()
+    (options, args) parseArguments()
+
+    if(len(args) < 1):
+        print "Please specify type of action (textpost, linkpost)"
+        return
+
+    action = args[0]
+
+    performAction(action, options)
 
 def parseArguments():
     parser = optparse.OptionParser()
@@ -11,5 +19,8 @@ def parseArguments():
 
     return parser.parse_args()
 
+def performAction(action, options):
+    if(action == "textpost"):
+        doTextPost(options)
 
 if __name__=="__main__":main()
