@@ -1,7 +1,7 @@
 import optparse
 
 def main():
-    (options, args) parseArguments()
+    (options, args) = parseArguments()
 
     if(len(args) < 1):
         print "Please specify type of action (textpost, linkpost)"
