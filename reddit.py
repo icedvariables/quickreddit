@@ -9,8 +9,10 @@ class Reddit:
         self.r.login(user, password)
         print "Logged in"
 
-    def doTextPost(self, options):
+    def doTextPost(self, options, user):
+        self.login(user["username"], user["password"])
         self.r.submit(options.subreddit, options.title, text=options.body)
 
-    def doLinkPost(self, options):
+    def doLinkPost(self, options, user):
+        self.login(user["username"], user["password"])
         self.r.submit(options.subreddit, options.title, url=options.link)
