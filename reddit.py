@@ -30,10 +30,6 @@ class Reddit:
                 name = name[:57] + "..."
             else:
                 name += " " * (60 - len(name)) # pad with spaces
-            print name, ":", self.getPostId(post.short_link)
+            print name, ":", post.id
 
-    def getPostId(self, url):
-        return url.split("/")[-1]
 
-    def getPostLink(self, postid):
-        return "http://redd.it/"+postid
