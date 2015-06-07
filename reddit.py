@@ -9,3 +9,6 @@ class Reddit:
 
     def doTextPost(self, options):
         self.r.submit(options.subreddit, options.title, text=options.body)
+
+    def doLinkPost(self, options):
+        self.r.submit(options.subreddit, options.title, url=options.link)
