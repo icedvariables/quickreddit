@@ -1,9 +1,11 @@
-import optparse
+import optparse, os, json
 from reddit import Reddit
 
-r = Reddit("user", "pass")
+r = Reddit()
 
 def main():
+    users = getUsers()
+    print users
     (options, args) = parseArguments()
 
     if(len(args) < 1):
@@ -28,5 +30,28 @@ def performAction(action, options):
         r.doTextPost(options)
     if(action == "linkpost"):
         r.doLinkPost(options)
+
+def getUsers():
+    files = getUserFiles()
+    userData = []
+
+    for filename in files:
+        with open(filename) as f:
+            try:
+                userData.append(json.load(f))
+            except ValueError, e:
+                print "Invalid user file:", e
+                sys.exit()
+
+    return userData
+
+def getUserFiles(directory="users"):
+    userFiles = []
+
+    for file in os.listdir(directory):
+        if(file.split(".")[-1] == "user"):
+            userFiles.append(os.path.join(directory, file))
+
+    return userFiles
 
 if __name__=="__main__":main()

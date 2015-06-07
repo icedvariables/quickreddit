@@ -1,10 +1,12 @@
 import praw
 
 class Reddit:
-    def __init__(self, username, password, userAgent="QuickReddit: http://github.com/icedvariables/quickreddit /u/icedvariables"):
+    def __init__(self, userAgent="QuickReddit: http://github.com/icedvariables/quickreddit /u/icedvariables"):
         self.r = praw.Reddit(user_agent=userAgent)
         print "Created reddit object"
-        self.r.login(username, password)
+
+    def login(self, user, password):
+        self.r.login(user, password)
         print "Logged in"
 
     def doTextPost(self, options):
