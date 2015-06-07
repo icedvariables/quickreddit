@@ -6,4 +6,4 @@ class Reddit:
         self.r.login(username, password)
 
     def doTextPost(options):
-        self.r.submit(options["subreddit"], options["title"], text=options["body"])
+        self.r.submit(options.subreddit, options.title, text=options.body)
