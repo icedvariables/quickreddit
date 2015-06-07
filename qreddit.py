@@ -1,4 +1,7 @@
 import optparse
+from reddit import Reddit
+
+r = Reddit("user", "pass")
 
 def main():
     (options, args) = parseArguments()
@@ -21,6 +24,6 @@ def parseArguments():
 
 def performAction(action, options):
     if(action == "textpost"):
-        doTextPost(options)
+        r.doTextPost(options)
 
 if __name__=="__main__":main()
