@@ -26,6 +26,14 @@ class Reddit:
 
         for post in posts:
             name = str(post)
-            if(len(name) >= 79): # use 79 instead of 80 because they're may be a trailing newline
-                name = name[:76] + "..."
-            print name
+            if(len(name) >= 60): # use 79 instead of 80 because they're may be a trailing newline
+                name = name[:57] + "..."
+            else:
+                name += " " * (60 - len(name)) # pad with spaces
+            print name, ":", self.getPostId(post.short_link)
+
+    def getPostId(self, url):
+        return url.split("/")[-1]
+
+    def getPostLink(self, postid):
+        return "http://redd.it/"+postid
