@@ -5,5 +5,5 @@ class Reddit:
         self.r = praw.Reddit(user_agent=userAgent)
         self.r.login(username, password)
 
-    def doTextPost(options):
+    def doTextPost(self, options):
         self.r.submit(options.subreddit, options.title, text=options.body)
