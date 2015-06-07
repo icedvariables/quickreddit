@@ -31,6 +31,7 @@ class QReddit:
         parser.add_option("-u", "--user", help="Specify username", dest="username")
         parser.add_option("-p", "--pass", help="Specify password", dest="password")
         parser.add_option("-L", "--limit", help="Limit results (for view)", type="int", dest="limit")
+        parser.add_option("-i", "--postid", help="Specify post ID", dest="postid")
 
         return parser.parse_args()
 
@@ -41,6 +42,8 @@ class QReddit:
             self.r.doLinkPost(self.options, self.user)
         if(self.action == "viewsub"):
             self.r.doViewsub(self.options)
+        if(self.action == "viewpost"):
+            self.r.doViewpost(self.options)
         if(self.action == "createuser"):
             self.createUser(self.options.username, self.options.password)
 

@@ -1,4 +1,4 @@
-import praw
+import praw, time, sys
 
 class Reddit:
     def __init__(self, userAgent="QuickReddit: http://github.com/icedvariables/quickreddit /u/icedvariables"):
@@ -32,4 +32,25 @@ class Reddit:
                 name += " " * (60 - len(name)) # pad with spaces
             print name, ":", post.id
 
+    def doViewpost(self, options):
+        post = self.r.get_submission(submission_id=options.postid)
 
+        try:
+            print post.score, "::", post.title
+        except UnicodeEncodeError: # Happens on post with weird unicode characters
+            print str(post)
+        sys.stdout.write(post.domain + "\t")
+        sys.stdout.write(str(time.time() - post.created_utc) + " seconds ago\t/u/" + str(post.author) + "\t")
+        if(post.over_18):
+            print "NSFW"
+
+        print "\n", post.selftext
+        print "=" * 80
+
+        for comment in post.comments:
+            try:
+                sys.stdout.write("-" * 80)
+                print comment.score, "::", comment.body
+                print time.time() - comment.created_utc, "seconds ago\t/u/" + str(comment.author)
+            except AttributeError: # if comment is a MoreComments object and not an actual comment
+                print "\n", str(comment)
