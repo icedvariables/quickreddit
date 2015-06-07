@@ -8,7 +8,7 @@ class QReddit:
         (self.options, args) = self.parseArguments()
 
         if(len(args) < 1):
-            print "Please specify type of action (textpost, linkpost)"
+            print "Please specify type of action (textpost, linkpost, viewsub, createuser)"
             return
 
         self.action = args[0]
